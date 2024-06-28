@@ -6,4 +6,7 @@ Env\Scripts\activate.bat
 =============================
 install fastapi
 pip install fastapi
-pip 
+pip install "uvicorn[standard]"
+=====================
+running server
+uvicorn books:app --reload
