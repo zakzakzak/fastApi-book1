@@ -1,0 +1,9 @@
+buat virtual env 
+py -m venv Env
+=============================
+masuk ke mode Env
+Env\Scripts\activate.bat 
+=============================
+install fastapi
+pip install fastapi
+pip 
