@@ -47,3 +47,8 @@ async def create_book(new_book=Body()):
     BOOKS.append(new_book)
 
 
+@app.put("/books/update_book")
+async def update_book(updated_book=Body()):
+    for i in range(len(BOOKS)): 
+        if BOOKS[i].get('title').casefold() == updated_book.get('title').casefold():
+            BOOKS[i] = updated_book
