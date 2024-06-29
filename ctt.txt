@@ -10,6 +10,7 @@ pip install "uvicorn[standard]"
 =====================
 running server
 uvicorn books:app --reload
+uvicorn {nama_file_py}:app --reload
 =====================
 Order path API berpengaruh, jika ada 2 endpoint dan nama structure endpoint mirip, dan ada yg menerima querry
 yg hanya menerima path di taro di atas, yg menerima querry di taro bawah
