@@ -59,3 +59,13 @@ async def delete_book(book_title : str):
         if BOOKS[i].get('title').casefold() == book_title.casefold():
             BOOKS.pop(i)
             break
+
+# Assignment : Search book by author
+@app.get("/books/search_by_author/{book_author}")
+async def search_by_author(book_author : str):
+    books_to_return = []
+    for book in BOOKS : 
+        if book.get('author').casefold() == book_author.casefold()  :
+            books_to_return.append(book)
+    return books_to_return
+
