@@ -26,7 +26,7 @@ class BookRequest(BaseModel):
     author: str = Field(min_length=1)
     description: str = Field(min_length=1, max_length=100)
     rating: int = Field(gt=-1, lt=6)
-    published_date : int
+    published_date : int = Field(gt=1999, lt=2031)
 
     class Config:
         json_schema_extra = {
@@ -34,7 +34,8 @@ class BookRequest(BaseModel):
                 'title': 'A new book',
                 'author': 'codingwithroby',
                 'description': 'A new description of a book',
-                'rating': 5
+                'rating': 5,
+                'published_date' : 2029
             }
         } 
 
@@ -69,6 +70,14 @@ async def read_book_by_rating(book_rating: int):
             books_to_return.append(book)
     return books_to_return
 
+@app.get("/books/publish/")
+async def read_book_by_published_date(published_date: int):
+    books_to_return = [] 
+    for book in BOOKS : 
+        if book.published_date == published_date :
+            books_to_return.append(book)
+    return books_to_return
+
 
 @app.post("/create-book")
 async def create_book(book_request:BookRequest):
@@ -92,3 +101,5 @@ async def delete_book(book_id : int):
         if BOOKS[i].id == book_id :
             BOOKS.pop(i)
             break
+
+    
