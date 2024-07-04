@@ -44,3 +44,7 @@ API Structure
 422 : Semantic Errors in Client Request
 =========================
 500 : Issue on Server (exp : error on python code)
+=====================
+@app.post("/create-book", status_code = status.HTTP_201_CREATED)
+@app.get("/books/publish/", status_code = status.HTTP_200_OK)
+Response standard dari Fast API (sebagai Server Response)
