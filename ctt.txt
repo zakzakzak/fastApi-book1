@@ -25,3 +25,5 @@ from fastapi import FastAPI, Path
 Path : untuk validation path parameter
 =====================
 API : ada inputan query parameter & path parameter
+===============
+API Structure
