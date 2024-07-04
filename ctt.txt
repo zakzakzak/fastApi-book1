@@ -4,6 +4,8 @@ py -m venv Env
 masuk ke mode Env
 Env\Scripts\activate.bat 
 =============================
+ganti akun git, delete lewat control panel
+======================
 install fastapi
 pip install fastapi
 pip install "uvicorn[standard]"
@@ -16,3 +18,10 @@ Order path API berpengaruh, jika ada 2 endpoint dan nama structure endpoint miri
 yg hanya menerima path di taro di atas, yg menerima querry di taro bawah
 =====================
 pydantics untuk validation
+mandatory
+min max, gt lt
+======================
+from fastapi import FastAPI, Path
+Path : untuk validation path parameter
+=====================
+API : ada inputan query parameter & path parameter
