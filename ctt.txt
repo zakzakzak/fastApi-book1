@@ -27,3 +27,20 @@ Path : untuk validation path parameter
 API : ada inputan query parameter & path parameter
 ===============
 API Structure
+===================
+1xx : Information response (request processing)
+2xx : Success : request successfully completed
+3xx : Redirection : Further Action Must be complete
+4xx : Client error
+5xx : Server Error
+============================
+200 : Get - Return Data 
+201 : Created
+204 : Not Create, Not Return -> Put Request 
+=======================
+400 : Bad Request 
+401 : Unauthorized 
+404 : Request Resource can not be found 
+422 : Semantic Errors in Client Request
+=========================
+500 : Issue on Server (exp : error on python code)

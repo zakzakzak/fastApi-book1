@@ -50,8 +50,6 @@ BOOKS = [
 ]
 
 
-
-
 @app.get("/books")
 async def read_all_books():
     return BOOKS
@@ -78,12 +76,10 @@ async def read_book_by_published_date(published_date: int= Query(gt=1999, lt=203
             books_to_return.append(book)
     return books_to_return
 
-
 @app.post("/create-book")
 async def create_book(book_request:BookRequest):
     new_book = Book(**book_request.model_dump())
     BOOKS.append(find_book_id(new_book))
-
 
 def find_book_id(book:Book):
     book.id = 1 if len(BOOKS) == 0 else BOOKS[-1].id + 1
@@ -101,5 +97,4 @@ async def delete_book(book_id : int = Path(gt=0)):
         if BOOKS[i].id == book_id :
             BOOKS.pop(i)
             break
-
-    
+  
