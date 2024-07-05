@@ -51,3 +51,9 @@ Response standard dari Fast API (sebagai Server Response)
 =============================
 Depedencies 
 SQLalchemy (pip install)
+
+========================
+Buat project
+1. Create venv 
+2. Buat Folder project 
+3. Buat file database (untuk connection)
