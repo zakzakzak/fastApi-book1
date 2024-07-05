@@ -48,3 +48,6 @@ API Structure
 @app.post("/create-book", status_code = status.HTTP_201_CREATED)
 @app.get("/books/publish/", status_code = status.HTTP_200_OK)
 Response standard dari Fast API (sebagai Server Response)
+=============================
+Depedencies 
+SQLalchemy (pip install)
