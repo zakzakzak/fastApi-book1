@@ -57,3 +57,5 @@ Buat project
 1. Create venv 
 2. Buat Folder project 
 3. Buat file database (untuk connection)
+=====================
+urutan parameter api perlu diperhatikan (ada case pada saat path parameter)
