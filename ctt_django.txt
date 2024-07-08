@@ -1,0 +1,103 @@
+buat virtual env 
+py -m venv Env
+=============================
+masuk ke mode Env
+Env\Scripts\activate.bat 
+=============================
+install Django
+pip install Django 
+=============================
+lihat list pip 
+pip list 
+=============================
+mulai project 
+django-admin startproject _namaProject_ 
+=============================
+pindah ke mywebsite
+cd mywebsite
+=============================
+run server 
+py manage.py runserver
+=============================
+mematikan server 
+exit python nya
+=============================
+keluar dari virtual environment 
+deactivate 
+=============================
+membuat app
+py manage.py startapp blog 
+isi nama app pada settings (_nama_projectnya_)
+=============================
+???jika ada perubahan yg banyak?
+py .\manage.py makemigrations
+=============================
+???jika ada perubahan yg banyak?
+py .\manage.py migrate
+=============================
+
+=============================
+frontend -> statics :
+forntend -> templates : 
+=============================
+npm1 - ???insialisasi npm
+npm init -y
+=============================
+npm2 - install webpack : untuk install semua hal yg terkait js 
+npm i webpack webpack-cli --save-dev
+=============================
+npm3 - ??install js terbaru??
+npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+=============================
+npm4 - ?? 
+npm i react react-dom --save-dev
+=============================
+npm5 - ?? untuk ui
+[X-Versi lama] npm install @material-ui/core
+npm install @mui/material @emotion/react @emotion/styled
+=============================
+npm 6,7,8
+npm install @babel/plugin-proposal-class-properties
+npm install react-router-dom
+npm install @material-ui/icons
+=============================
+
+
+
+pertanyaan ?
+- apa perbedaan startapp dan startproject 
+- models & serialization & views
+- install semua yg terkait npm di folder frontend (npm1,2,3)
+
+catatan :
+- setiap yg ada init nya adalah package
+
+
+terakhir https://www.youtube.com/watch?v=2euctyVhs3s&list=PLZS-MHyEIRo6p_RwsWntxMO5QAqIHHHld&index=9
+khusus RESTful API https://www.youtube.com/watch?v=c708Nf0cHrs
+1:49 :00 -> 2:16:33
+
+
+Boiler plate : 
+- Create Pyton Env
+- pip install django (pip list to check)
+- Create Project (startproject)
+- lib rest_framework -> pip install djangorestframework
+- Create App (startapp)
+
+
+
+
+=====================
+- Data Consistency (Mongo & SQL, Mongo & SAP)
+- System Performance (server & service monitoring)
+- IOT Data Anomaly (for Refreshment)
+- Crash-lytics
+
+- Event Anlyzer (for Credibility & to analyzer)
+
+
+Monetization : 
+- Authentication 
+- Generate API Keys
+- Metered billing
