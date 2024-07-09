@@ -59,3 +59,6 @@ Buat project
 3. Buat file database (untuk connection)
 =====================
 urutan parameter api perlu diperhatikan (ada case pada saat path parameter)
+===================
+hashing password
+libary : passlib, bcrypt==4.0.1/newer
