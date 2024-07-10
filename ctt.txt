@@ -86,4 +86,5 @@ JWT payload consist of the data, the payload data contains claims (3) :
 - Private
 encode using base64 (b)
 ========================
-JWT Signature - created by using algorithm in the header
+JWT Signature - created by using algorithm in the header (c)
+========================
