@@ -22,7 +22,6 @@ class CreateUserRequest(BaseModel):
     role       : str
 
 
-
 def get_db():
     db = Sessionlocal()
     try : 

@@ -65,3 +65,25 @@ libary : passlib, bcrypt==4.0.1/newer
 from passlib.context import CryptContext 
 bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 bcrypt_context.hash(create_user_request.password)
+========================
+lib python-multipart
+========================
+JWT : Json Web Token -> for authentication
+parts :
+1. Header (a)
+2. Payload (b)
+3. Signature (c)
+aaaaaaaa.bbbbbbbb.cccccccc
+=====================
+JWT Header - 2 parts : (a)
+- alg : algo for signing
+- typ : type of token
+===========================
+JWT payload consist of the data, the payload data contains claims (3) : 
+*as actual data of the user
+- Registered
+- Public
+- Private
+encode using base64 (b)
+========================
+JWT Signature - created by using algorithm in the header
