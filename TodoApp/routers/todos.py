@@ -21,8 +21,8 @@ def get_db():
     finally :
         db.close()
 
+# Depends() -> Dependency Injection : Menjalankan function get_db saat mulai, dan selesai (finally)
 db_dependency = Annotated[Session, Depends(get_db)]
-
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
 class TodoRequest(BaseModel):
@@ -35,13 +35,19 @@ class TodoRequest(BaseModel):
 
 @router.get("/", status_code = status.HTTP_200_OK)
 async def read_all(user: user_dependency, db: db_dependency):
-    # Depends() -> Dependency Injection : Menjalankan function get_db saat mulai, dan selesai (finally)
+    if user is None : 
+        raise   HTTPException(status_code=401, detail='Unauthorized')
     return db.query(Todos).filter(Todos.owner_id == user.get('id')).all()
 
 
 @router.get("/todos/{todo_id}", status_code = status.HTTP_200_OK)
-async def read_todo(db: db_dependency, todo_id:int= Path(gt=0)):
-    todo_model = db.query(Todos).filter(Todos.id == todo_id).first()
+async def read_todo(user : user_dependency, db: db_dependency, todo_id:int= Path(gt=0)):
+    if user is None : 
+        raise   HTTPException(status_code=401, detail='Unauthorized')
+    todo_model = db.query(Todos)\
+                   .filter(Todos.id == todo_id)\
+                   .filter(Todos.owner_id == user.get('id'))\
+                   .first()
     if todo_model is not None : 
         return todo_model
     raise HTTPException(status_code = 404, detail='Todo not found.')
