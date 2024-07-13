@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, Path
 from starlette import status
 from database import Sessionlocal
 from models import Todos
+from .auth import get_current_user 
 
 
 router = APIRouter()
@@ -22,6 +23,8 @@ def get_db():
 
 db_dependency = Annotated[Session, Depends(get_db)]
 
+user_dependency = Annotated[dict, Depends(get_current_user)]
+
 class TodoRequest(BaseModel):
     title       : str = Field(min_length = 3)
     description : str = Field(min_length = 3, max_length = 100)
@@ -35,6 +38,7 @@ async def read_all(db: db_dependency):
     # Depends() -> Dependency Injection : Menjalankan function get_db saat mulai, dan selesai (finally)
     return db.query(Todos).all()
 
+
 @router.get("/todos/{todo_id}", status_code = status.HTTP_200_OK)
 async def read_todo(db: db_dependency, todo_id:int= Path(gt=0)):
     todo_model = db.query(Todos).filter(Todos.id == todo_id).first()
@@ -43,9 +47,11 @@ async def read_todo(db: db_dependency, todo_id:int= Path(gt=0)):
     raise HTTPException(status_code = 404, detail='Todo not found.')
 
 @router.post("/todo", status_code = status.HTTP_200_OK)
-async def create_todo(db: db_dependency, todo_request : TodoRequest):
-    todo_model = Todos(**todo_request.dict())
-
+async def create_todo(user : user_dependency, db: db_dependency, 
+                      todo_request : TodoRequest):
+    if user is None : 
+        raise   HTTPException(status_code=401, detail='Unauthorized')
+    todo_model = Todos(**todo_request.dict(), owner_id=user.get('id'))
     db.add(todo_model)
     db.commit()
 
