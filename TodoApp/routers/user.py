@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from fastapi import APIRouter, Depends, HTTPException, Path
 from starlette import status
 from database import Sessionlocal
-from models import Todos
+from models import Todos, Users
 from .auth import get_current_user 
 
 
@@ -28,9 +28,10 @@ def get_db():
 db_dependency = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
 
+
 @router.get("/", status_code = status.HTTP_200_OK)
-async def read_all(user: user_dependency, db: db_dependency):
-    if user is None or user.get('role') != 'admin' : 
-        raise   HTTPException(status_code=401, detail='Unauthorized')
-    return db.query(Todos).all()
+async def get_user_new(user: user_dependency, db: db_dependency):
+    if user is None or user.get('role') != 'admin' :
+        raise   HTTPException(status_code=401, detail='Unauthorizxxxed')
+    return db.query(Users).all()
 

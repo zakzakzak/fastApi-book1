@@ -1,7 +1,7 @@
 from datetime import timedelta, timezone, datetime
 from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from models import Users
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
@@ -9,6 +9,7 @@ from database import Sessionlocal
 from starlette import status
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from jose import jwt, JWTError
+
 
 router = APIRouter(
     prefix = '/auth',
@@ -29,6 +30,9 @@ class CreateUserRequest(BaseModel):
     password   : str
     role       : str
 
+class userRequest(BaseModel):
+    password    : str = Field(min_length = 3)
+
 class Token(BaseModel):
     access_token : str
     token_type : str
@@ -40,8 +44,10 @@ def get_db():
         yield db
     finally :
         db.close()
+        
 
 db_dependency = Annotated[Session, Depends(get_db)]
+
 
 def authenticate_user(username : str, password : str, db):
     user = db.query(Users).filter(Users.username == username).first()
@@ -70,6 +76,7 @@ async def get_current_user(token : Annotated[str, Depends(oauth2_bearer)]):
     except :
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Could not Validate User.')
     
+user_dependency = Annotated[dict, Depends(get_current_user)]
 
 @router.post("/", status_code = status.HTTP_201_CREATED)
 async def create_user(db: db_dependency,
@@ -95,3 +102,22 @@ async def login_for_access_token(form_data:Annotated[OAuth2PasswordRequestForm, 
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Could not Validate User.')
     token = create_access_token(user.username, user.id, user.role, timedelta(minutes=20))
     return {'access_token': token, 'token_type':'bearer'}
+
+
+@router.post("/updatePassword", status_code = status.HTTP_200_OK)
+async def update_password(user : user_dependency,
+                          db : db_dependency, 
+                          user_request : userRequest):
+    if user is None : 
+        raise   HTTPException(status_code=401, detail='Unauthorized')
+    user_id = user.get('id')
+    
+    user_model = db.query(Users)\
+                   .filter(Users.id == user_id)\
+                   .first()
+    print(user_request)
+    user_model.password = bcrypt_context.hash(user_request.password)
+    print(user_model)
+
+    db.add(user_model)
+    db.commit()

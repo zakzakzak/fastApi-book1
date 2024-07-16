@@ -88,3 +88,5 @@ encode using base64 (b)
 ========================
 JWT Signature - created by using algorithm in the header (c)
 ========================
+stop uvicorn 
+end task background process (python)
