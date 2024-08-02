@@ -33,5 +33,5 @@ user_dependency = Annotated[dict, Depends(get_current_user)]
 async def get_user_new(user: user_dependency, db: db_dependency):
     if user is None or user.get('role') != 'admin' :
         raise   HTTPException(status_code=401, detail='Unauthorizxxxed')
-    return db.query(Users).all()
+    return db.query(Users).filter(Users.id == user.get('id)).all()
 
