@@ -2,15 +2,13 @@ DEPLOYMENT
 1. Menggunakan Virtual Environment & Menginstall Library yg dibutuhkan
 2. Create Database (dgn FastApi)
 
-
-
 =======================
 STRUCTURES
 ----------------------- 
 - main.py
 - models.py
 - database.py
-- routers
+- routers (prefix)
 --- service1.py
 --- service2.py
 --- service3.py
