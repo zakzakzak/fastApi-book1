@@ -26,9 +26,9 @@ def get_db():
         db.close()
 
 # Depends() -> Dependency Injection : Menjalankan function get_db saat mulai, dan selesai (finally)
-db_dependency = Annotated[Session, Depends(get_db)]
+db_dependency   = Annotated[Session, Depends(get_db)]
 user_dependency = Annotated[dict, Depends(get_current_user)]
-bcrypt_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
+bcrypt_context  = CryptContext(schemes=['bcrypt'], deprecated='auto')
 
 class UserVerification(BaseModel):
     password : str

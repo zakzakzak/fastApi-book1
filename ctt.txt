@@ -90,3 +90,16 @@ JWT Signature - created by using algorithm in the header (c)
 ========================
 stop uvicorn 
 end task background process (python)
+======================
+SQLite3 -> Untuk skala kecil
+MySQL & PostgreSQL -> untuk skala besar
+===================
+Postgre
+- Can only 1 Port 
+- 1 port has limit 100 connection (server)
+- 1 port, 100 connection/server, multiple DB 
+- 1 DB -> Many Tables
+====================
+membuat requirements : 
+pip freeze > requirements.txt
+=======================
