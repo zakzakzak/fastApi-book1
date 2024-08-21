@@ -103,3 +103,9 @@ Postgre
 membuat requirements : 
 pip freeze > requirements.txt
 =======================
+Alembic
+- database migration tools that more powerful than SQLalchemy
+- SQLalchemy only migrate for a new database 
+- The case is when the app is evolves, the database need to evolve as well 
+- and this tools helps us to keep modifying our database to keep up with rapid development requirements
+=======================
